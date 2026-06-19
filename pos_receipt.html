@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Uellow — POS Receipt mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#F5C320;--dark:#412402;--ink:#2A1B0A;--muted:#9c8e76;--soft:#FBF6EA;--line:#efe7d6;--ok:#1f9d55}
+*{box-sizing:border-box;font-family:'Tajawal',sans-serif}
+body{margin:0;background:#d9d2c5;padding:26px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.title{color:var(--dark);text-align:center}
+.r{width:360px;background:#fff;border-radius:14px;box-shadow:0 16px 40px rgba(0,0,0,.25);overflow:hidden;color:var(--ink)}
+/* header */
+.hd{background:var(--dark);color:#fff;text-align:center;padding:16px 14px 14px}
+.logo{display:inline-flex;align-items:center;gap:6px;font-weight:900;font-size:26px;color:var(--brand);letter-spacing:.5px}
+.logo .b{width:22px;height:22px;border-radius:50%;background:var(--brand);display:inline-block}
+.hd .cn{font-weight:800;font-size:15px;margin-top:6px}
+.hd .ca{font-size:11px;color:#E7D7B8;line-height:1.5;margin-top:3px}
+.doc{display:inline-block;margin-top:9px;background:var(--brand);color:var(--dark);font-weight:800;font-size:12px;letter-spacing:1px;padding:4px 14px;border-radius:20px}
+.doc small{font-weight:700}
+/* body */
+.bd{padding:14px 16px}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;font-size:11.5px}
+.meta .k{color:var(--muted);font-weight:800;text-transform:uppercase;font-size:9px;letter-spacing:.6px}
+.meta .v{font-weight:800;color:var(--ink)}
+.meta small{display:block;color:var(--muted);font-weight:700;font-size:9px}
+.cust{background:var(--soft);border-radius:11px;padding:11px 13px;margin-top:12px}
+.cust .lbl{color:#C79A12;font-weight:800;font-size:9px;letter-spacing:.8px;text-transform:uppercase}
+.cust .nm{font-weight:800;font-size:14px;margin-top:3px}
+.cust .ad{font-size:11.5px;color:#6f6048;line-height:1.5;margin-top:2px}
+.sect{margin-top:14px}
+table{width:100%;border-collapse:collapse}
+.items thead td{background:var(--dark);color:#fff;font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:8px 9px}
+.items thead td small{color:#E7D7B8;font-weight:700;display:block}
+.items tbody td{font-size:12px;padding:9px 9px;vertical-align:top}
+.items tbody tr:nth-child(even){background:#FCFAF3}
+.items .pname{font-weight:800}.items .pa{color:var(--muted);font-size:10px;font-weight:600}
+.r-txt{text-align:right}.c-txt{text-align:center}
+.tot{margin-top:10px}
+.tot td{padding:4px 2px;font-size:12px;color:#6f6048}
+.tot .v{text-align:right;font-weight:800;color:var(--ink)}
+.tot small{color:var(--muted)}
+.grand{background:var(--brand);border-radius:11px;margin-top:8px}
+.grand td{padding:11px 13px;color:var(--dark);font-weight:800}
+.grand .lab{font-size:13px}.grand .lab small{display:block;color:#6b4a12;font-size:10px;font-weight:700}
+.grand .amt{text-align:right;font-size:22px}
+.pay{display:flex;justify-content:space-between;background:var(--soft);border-radius:10px;padding:9px 13px;margin-top:10px;font-size:12px;font-weight:800}
+.pay small{color:var(--muted);font-weight:700}
+.loyal{display:flex;justify-content:space-between;align-items:center;background:#EAF7EF;border-radius:10px;padding:9px 13px;margin-top:8px;font-size:11.5px;font-weight:800;color:#176b3c}
+.warr{display:flex;align-items:center;gap:10px;background:var(--soft);border-radius:10px;padding:9px 13px;margin-top:8px}
+.warr .pill{background:var(--brand);color:var(--dark);font-weight:800;font-size:11px;padding:5px 11px;border-radius:20px;white-space:nowrap}
+.warr .t{font-size:10.5px;color:#6f6048;line-height:1.4}.warr .t b{color:var(--dark)}
+.qr{text-align:center;margin-top:14px}
+.qr img{width:104px;height:104px}
+.qr .c{font-size:9.5px;color:var(--muted);font-weight:700;margin-top:4px}
+.thanks{text-align:center;margin-top:12px;font-weight:800;color:var(--dark);font-size:13px}
+.thanks small{display:block;color:var(--muted);font-weight:700;font-size:10px;margin-top:2px}
+.foot{background:var(--dark);color:#E7D7B8;text-align:center;font-size:9.5px;line-height:1.6;padding:11px 14px}
+.foot b{color:var(--brand)}
+.dash{border:0;border-top:1.5px dashed var(--line);margin:12px 0}
+</style></head>
+<body>
+<div class="title"><h2>Uellow — POS Receipt mockup · موكاب فاتورة البوس</h2><p>اعتمد التصميم ثم أنفّذه في الـPOS فعليًا</p></div>
+
+<div class="r">
+  <div class="hd">
+    <div class="logo"><span class="b"></span>uellow</div>
+    <div class="cn">Uellow W.L.L · يلو</div>
+    <div class="ca">Al Farwaniyah – Habeeb Munawer St. – Deejany Complex – Shop No.7, Kuwait City<br/>+965 9717 0939 · info@uellow.com</div>
+    <div class="doc">INVOICE · فاتورة</div>
+  </div>
+
+  <div class="bd">
+    <div class="meta">
+      <div><div class="k">Receipt · رقم</div><div class="v">POS/0007/0042</div></div>
+      <div class="r-txt"><div class="k">Date · التاريخ</div><div class="v">19/06/2026 21:14</div></div>
+      <div><div class="k">Cashier · الكاشير</div><div class="v">Ahmad</div></div>
+      <div class="r-txt"><div class="k">Register · نقطة البيع</div><div class="v">Farwaniya 01</div></div>
+    </div>
+
+    <div class="cust">
+      <div class="lbl">Customer · العميل</div>
+      <div class="nm">Youssef Azab · يوسف عزب</div>
+      <div class="ad">Street 10, Mahboula, Kuwait · المهبولة<br/>+965 6580 6325 · youssef@gmail.com</div>
+    </div>
+
+    <div class="sect">
+      <table class="items">
+        <thead><tr>
+          <td>Item <small>المنتج</small></td>
+          <td class="c-txt" style="width:34px">Qty <small>كمية</small></td>
+          <td class="r-txt" style="width:62px">Price <small>السعر</small></td>
+          <td class="r-txt" style="width:66px">Total <small>الإجمالي</small></td>
+        </tr></thead>
+        <tbody>
+          <tr><td><div class="pname">Epic 4K Ultra HD TV Stick</div><div class="pa">جهاز بث ٤K</div></td><td class="c-txt">1</td><td class="r-txt">5.560</td><td class="r-txt">5.560</td></tr>
+          <tr><td><div class="pname">MEGIR Steel Watch</div><div class="pa">ساعة ميجير ستيل</div></td><td class="c-txt">2</td><td class="r-txt">8.500</td><td class="r-txt">17.000</td></tr>
+          <tr><td><div class="pname">Wireless Earbuds ZQS</div><div class="pa">سماعات لاسلكية</div></td><td class="c-txt">1</td><td class="r-txt">3.250</td><td class="r-txt">3.250</td></tr>
+        </tbody>
+      </table>
+
+      <table class="tot">
+        <tr><td>Subtotal <small>· الإجمالي الفرعي</small></td><td class="v">25.810 KD</td></tr>
+        <tr><td>Discount <small>· الخصم</small></td><td class="v">−1.000 KD</td></tr>
+      </table>
+      <table class="grand"><tr><td class="lab">TOTAL <small>الإجمالي المستحق</small></td><td class="amt">24.810 KD</td></tr></table>
+      <div style="text-align:right;font-size:9.5px;color:var(--muted);font-style:italic;margin-top:5px">Twenty-four KD 810 fils · أربعة وعشرون دينارًا و٨١٠ فلس</div>
+
+      <div class="pay"><span>Paid · KNET <small>مدفوع · كي-نت</small></span><span>24.810 KD</span></div>
+      <div class="loyal"><span>★ Loyalty earned · نقاط الولاء</span><span>+248 pts · نقطة</span></div>
+
+      <div class="warr">
+        <span class="pill">🏅 24 mo · شهر</span>
+        <div class="t"><b>Warranty included · ضمان شامل</b><br/>Scan the QR or keep this receipt to activate · امسح الكود أو احتفظ بالفاتورة للتفعيل</div>
+      </div>
+
+      <div class="qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=POS/0007/0042" alt="qr"/>
+        <div class="c">Scan to verify &amp; track · امسح للتحقق والمتابعة</div>
+      </div>
+
+      <hr class="dash"/>
+      <div class="thanks">Thank you for shopping with Uellow 💛<small>شكرًا لتسوّقك مع يلو</small></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    Returns/exchange within 14 days with this receipt · الإرجاع والاستبدال خلال ١٤ يومًا بالفاتورة<br/>
+    <b>uellow.com</b> · @uellow · +965 9717 0939
+  </div>
+</div>
+</body></html>
