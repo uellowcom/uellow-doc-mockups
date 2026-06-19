@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Uellow — Sales Order / Quotation (mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--brand:#F5C320;--brand2:#FFD24A;--dark:#412402;--dark2:#5B3410;--ink:#1C1206;
+        --muted:#8a7c66;--line:#ece5d6;--soft:#FBF7EC;--ok:#1f9d55;--info:#2563EB}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#d9d2c5;font-family:'Sora','Tajawal',sans-serif;color:var(--ink);padding:24px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:210mm;min-height:297mm;margin:0 auto;background:#fff;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:6px}
+  .topbar{height:9px;background:linear-gradient(90deg,var(--dark),var(--brand) 55%,var(--brand2))}
+  .pad{padding:26px 30px}
+  .head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .brand{display:flex;gap:14px;align-items:center}
+  .logo{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,var(--dark),var(--dark2));color:var(--brand);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:30px;box-shadow:0 6px 16px rgba(65,36,2,.35)}
+  .brand h1{font-size:21px;letter-spacing:.5px;color:var(--dark)}
+  .brand .sub{font-size:10.5px;color:var(--muted);font-weight:600;margin-top:2px}
+  .brand .sub b{color:var(--ink)}
+  .doc{text-align:right}
+  .doc .title{font-size:28px;font-weight:800;color:var(--dark);line-height:1;letter-spacing:1px}
+  .doc .title small{display:block;font-family:'Tajawal';font-size:15px;color:var(--muted);font-weight:700;margin-top:3px}
+  .doc .no{margin-top:8px;font-size:12px;color:var(--muted);font-weight:600}.doc .no b{color:var(--ink);font-size:13px}
+  .status{display:inline-block;margin-top:8px;background:rgba(37,99,235,.1);border:1.5px solid var(--info);color:var(--info);font-weight:800;padding:4px 12px;border-radius:8px;font-size:11px;letter-spacing:1px}
+
+  /* TIMELINE */
+  .flow{display:flex;align-items:center;gap:0;margin-top:20px;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+  .step{display:flex;align-items:center;gap:8px;flex:1}
+  .dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;background:var(--brand);box-shadow:0 0 0 4px rgba(245,195,32,.18)}
+  .dot.done{background:var(--ok);box-shadow:0 0 0 4px rgba(31,157,85,.15)}
+  .dot.todo{background:#cfc6b4}
+  .step .t{font-size:10px;font-weight:800;color:var(--ink)}.step .t small{display:block;font-family:'Tajawal';color:var(--muted);font-weight:700;font-size:9px}
+  .bar{height:3px;flex:1;background:#e2d9c6;border-radius:3px;margin:0 6px}
+  .bar.on{background:var(--ok)}
+
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px}
+  .card{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .card .lbl{font-size:9.5px;font-weight:800;letter-spacing:1px;color:var(--brand);text-transform:uppercase}
+  .card .lbl span{font-family:'Tajawal';color:var(--muted);font-weight:700}
+  .card .nm{font-size:13.5px;font-weight:800;color:var(--ink);margin-top:5px}
+  .card .ln{font-size:10.5px;color:#5d5142;margin-top:2px;line-height:1.45}
+
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);margin-top:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .meta div{padding:9px 12px;border-right:1px solid var(--line)}.meta div:last-child{border-right:0}
+  .meta .k{font-size:8.5px;font-weight:800;letter-spacing:.6px;color:var(--muted);text-transform:uppercase}
+  .meta .v{font-size:11.5px;font-weight:800;color:var(--ink);margin-top:3px}
+
+  table{width:100%;border-collapse:collapse;margin-top:18px;border-radius:12px;overflow:hidden}
+  thead th{background:linear-gradient(90deg,var(--dark),var(--dark2));color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:11px 12px;text-align:left}
+  thead th.r{text-align:right}thead th.c{text-align:center}
+  tbody td{padding:10px 12px;font-size:11.5px;border-bottom:1px solid var(--line);vertical-align:middle}
+  tbody tr:nth-child(even){background:#fcfaf4}
+  td.r{text-align:right;font-weight:700}td.c{text-align:center}
+  .pthumb{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#fff6d9,#f3ead2);display:flex;align-items:center;justify-content:center;font-size:18px}
+  .pcell{display:flex;gap:10px;align-items:center}
+  .pname{font-weight:800;color:var(--ink)}.par{font-family:'Tajawal';color:var(--muted);font-size:10.5px;font-weight:600}
+  .num{font-variant-numeric:tabular-nums}
+
+  .bottom{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:20px}
+  .panel{border:1px solid var(--line);border-radius:12px;padding:14px 15px}
+  .panel h4{font-size:10px;letter-spacing:1px;color:var(--brand);text-transform:uppercase;margin-bottom:8px}.panel h4 span{font-family:'Tajawal';color:var(--muted)}
+  .kv{display:flex;justify-content:space-between;font-size:10.5px;padding:4px 0;color:#5d5142}.kv b{color:var(--ink)}
+  .totrow{display:flex;justify-content:space-between;font-size:11.5px;padding:6px 2px;color:#5d5142}.totrow b{color:var(--ink)}
+  .disc{color:var(--ok)}
+  .grand{margin-top:8px;background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+  .grand .t{font-weight:800;color:var(--dark);font-size:13px}.grand .t small{display:block;font-family:'Tajawal';font-weight:700;font-size:10px;color:var(--dark2)}
+  .grand .a{font-weight:900;color:var(--dark);font-size:22px;font-variant-numeric:tabular-nums}
+  .accept{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .accept .box{border:1.5px dashed var(--line);border-radius:12px;padding:14px;min-height:78px}
+  .accept .box h5{font-size:9.5px;letter-spacing:.8px;color:var(--dark);text-transform:uppercase}
+  .accept .box .line{margin-top:30px;border-top:1.5px solid var(--line);font-size:9px;color:var(--muted);padding-top:5px}
+  .cta{margin-top:14px;background:var(--dark);border-radius:12px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center}
+  .cta .msg{color:#e9dcc4;font-size:10.5px}.cta .msg b{color:var(--brand)}
+  .cta .btn{background:var(--brand);color:var(--dark);font-weight:800;font-size:11px;padding:8px 16px;border-radius:8px}
+  .footband{margin-top:16px;color:var(--muted);font-size:9.5px;text-align:center}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="topbar"></div>
+  <div class="pad">
+    <div class="head">
+      <div class="brand">
+        <div class="logo">U</div>
+        <div>
+          <h1>UELLOW <span style="font-size:12px;color:var(--muted)">W.L.L</span></h1>
+          <div class="sub">Salmiya, Block 12, Kuwait · <b>+965 9717 0933</b></div>
+          <div class="sub">info@uellow.com · CR <b>123456</b></div>
+        </div>
+      </div>
+      <div class="doc">
+        <div class="title">QUOTATION<small>عرض سعر / أمر بيع</small></div>
+        <div class="no">No. <b>S00004207</b></div>
+        <div class="status">AWAITING CONFIRMATION · بانتظار التأكيد</div>
+      </div>
+    </div>
+
+    <!-- FLOW -->
+    <div class="flow">
+      <div class="step"><div class="dot done">✓</div><div class="t">Quotation<small>عرض سعر</small></div></div>
+      <div class="bar on"></div>
+      <div class="step"><div class="dot">2</div><div class="t">Confirmed<small>مؤكد</small></div></div>
+      <div class="bar"></div>
+      <div class="step"><div class="dot todo">3</div><div class="t">Delivered<small>تم التسليم</small></div></div>
+      <div class="bar"></div>
+      <div class="step"><div class="dot todo">4</div><div class="t">Invoiced<small>فوترة</small></div></div>
+    </div>
+
+    <div class="grid3">
+      <div class="card"><div class="lbl">Customer <span>· العميل</span></div>
+        <div class="nm">أحمد الفهد · Ahmad Al-Fahad</div>
+        <div class="ln">حولي، الكويت<br/>+965 6650 1122<br/>ahmad@email.com</div></div>
+      <div class="card"><div class="lbl">Deliver to <span>· التوصيل</span></div>
+        <div class="nm">قطعة 4، شارع 7</div>
+        <div class="ln">حولي، الكويت<br/>Window: 2–4 working days<br/>Uellow Express</div></div>
+      <div class="card"><div class="lbl">Prepared by <span>· إعداد</span></div>
+        <div class="nm">Uellow Sales</div>
+        <div class="ln">Beena AI Assistant<br/>sales@uellow.com</div></div>
+    </div>
+
+    <div class="meta">
+      <div><div class="k">Order date · التاريخ</div><div class="v num">14 Jun 2026</div></div>
+      <div><div class="k">Valid until · صالح حتى</div><div class="v num">28 Jun 2026</div></div>
+      <div><div class="k">Payment · الدفع</div><div class="v">On delivery · عند الاستلام</div></div>
+      <div><div class="k">Currency · العملة</div><div class="v">KWD · د.ك</div></div>
+    </div>
+
+    <table>
+      <thead><tr>
+        <th style="width:34px" class="c">#</th><th>Product · المنتج</th>
+        <th class="c" style="width:50px">Qty</th><th class="r" style="width:92px">Unit</th>
+        <th class="r" style="width:70px">Disc</th><th class="r" style="width:100px">Amount</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="c">1</td>
+          <td><div class="pcell"><div class="pthumb">⌚</div><div>
+            <div class="pname">HainoTeko Smart Watch — Female</div>
+            <div class="par">ساعة هاينو تيكو الذكية — نسائي</div></div></div></td>
+          <td class="c num">1</td><td class="r num">19.500</td><td class="r disc num">−2.000</td><td class="r num">17.500</td></tr>
+        <tr><td class="c">2</td>
+          <td><div class="pcell"><div class="pthumb">🎧</div><div>
+            <div class="pname">Wireless Earbuds Pro</div>
+            <div class="par">سماعات لاسلكية برو</div></div></div></td>
+          <td class="c num">2</td><td class="r num">8.750</td><td class="r disc num">—</td><td class="r num">17.500</td></tr>
+        <tr><td class="c">3</td>
+          <td><div class="pcell"><div class="pthumb">🎁</div><div>
+            <div class="pname">Premium Gift Wrap</div>
+            <div class="par">تغليف هدايا فاخر</div></div></div></td>
+          <td class="c num">1</td><td class="r num">1.000</td><td class="r disc num">—</td><td class="r num">1.000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="bottom">
+      <div class="panel">
+        <h4>Terms &amp; delivery <span>· الشروط والتسليم</span></h4>
+        <div class="kv"><span>Delivery window · مدة التسليم</span><b>2–4 working days</b></div>
+        <div class="kv"><span>Payment terms · شروط الدفع</span><b>Cash / KNET on delivery</b></div>
+        <div class="kv"><span>Warranty · الضمان</span><b>12 months · ١٢ شهر</b></div>
+        <div class="kv"><span>Returns · الإرجاع</span><b>14 days · ١٤ يوم</b></div>
+        <div style="font-size:9.5px;color:var(--muted);margin-top:8px;line-height:1.5">Prices valid until the date above. Quotation becomes a confirmed order upon customer acceptance. هذا العرض ساري حتى التاريخ الموضّح.</div>
+      </div>
+      <div>
+        <div class="panel">
+          <div class="totrow"><span>Subtotal · الفرعي</span><b class="num">38.000 KD</b></div>
+          <div class="totrow disc"><span>Discount · الخصم</span><b class="num">−2.000 KD</b></div>
+          <div class="totrow"><span>Shipping · الشحن</span><b class="num">Free · مجاني</b></div>
+          <div class="grand"><div class="t">TOTAL<small>الإجمالي التقديري</small></div><div class="a">36.000 KD</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accept">
+      <div class="box"><h5>Customer acceptance · موافقة العميل</h5>
+        <div class="line">Signature &amp; date · التوقيع والتاريخ</div></div>
+      <div class="box"><h5>For Uellow W.L.L · عن يلو</h5>
+        <div class="line">Authorized signature · التوقيع المعتمد</div></div>
+    </div>
+
+    <div class="cta">
+      <div class="msg">Confirm in one tap from the app · <b>أكّد الطلب من التطبيق بضغطة واحدة</b></div>
+      <div class="btn">Confirm order · تأكيد</div>
+    </div>
+
+    <div class="footband">uellow.com · +965 9717 0933 · This document was generated electronically · مستند إلكتروني</div>
+  </div>
+</div>
+</body>
+</html>

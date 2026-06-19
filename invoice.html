@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Uellow — Tax Invoice (mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#F5C320; --brand2:#FFD24A; --dark:#412402; --dark2:#5B3410;
+    --ink:#1C1206; --muted:#8a7c66; --line:#ece5d6; --soft:#FBF7EC; --ok:#1f9d55;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#d9d2c5;font-family:'Sora','Tajawal',sans-serif;color:var(--ink);padding:24px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:210mm;min-height:297mm;margin:0 auto;background:#fff;position:relative;overflow:hidden;
+         box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:6px}
+  .topbar{height:9px;background:linear-gradient(90deg,var(--dark),var(--brand) 55%,var(--brand2))}
+  .pad{padding:26px 30px}
+
+  /* HEADER */
+  .head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .brand{display:flex;gap:14px;align-items:center}
+  .logo{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,var(--dark),var(--dark2));
+        color:var(--brand);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:30px;
+        font-family:'Sora';box-shadow:0 6px 16px rgba(65,36,2,.35)}
+  .brand h1{font-size:21px;letter-spacing:.5px;color:var(--dark)}
+  .brand .sub{font-size:10.5px;color:var(--muted);font-weight:600;margin-top:2px}
+  .brand .sub b{color:var(--ink)}
+  .doc{text-align:right}
+  .doc .title{font-size:30px;font-weight:800;color:var(--dark);line-height:1;letter-spacing:1px}
+  .doc .title small{display:block;font-family:'Tajawal';font-size:15px;color:var(--muted);font-weight:700;margin-top:3px}
+  .doc .no{margin-top:8px;font-size:12px;color:var(--muted);font-weight:600}
+  .doc .no b{color:var(--ink);font-size:13px}
+  .stamp{display:inline-block;margin-top:8px;border:2.5px solid var(--ok);color:var(--ok);font-weight:800;
+        padding:4px 12px;border-radius:8px;transform:rotate(-4deg);font-size:14px;letter-spacing:2px;
+        background:rgba(31,157,85,.06)}
+
+  /* PARTY CARDS */
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:22px}
+  .card{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .card .lbl{font-size:9.5px;font-weight:800;letter-spacing:1px;color:var(--brand);text-transform:uppercase}
+  .card .lbl span{font-family:'Tajawal';color:var(--muted);font-weight:700}
+  .card .nm{font-size:13.5px;font-weight:800;color:var(--ink);margin-top:5px}
+  .card .ln{font-size:10.5px;color:#5d5142;margin-top:2px;line-height:1.45}
+
+  /* META STRIP */
+  .meta{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:14px;border:1px solid var(--line);
+        border-radius:12px;overflow:hidden}
+  .meta div{padding:9px 12px;border-right:1px solid var(--line)}
+  .meta div:last-child{border-right:0}
+  .meta .k{font-size:8.5px;font-weight:800;letter-spacing:.6px;color:var(--muted);text-transform:uppercase}
+  .meta .v{font-size:11.5px;font-weight:800;color:var(--ink);margin-top:3px}
+
+  /* ITEMS */
+  table{width:100%;border-collapse:collapse;margin-top:18px;border-radius:12px;overflow:hidden}
+  thead th{background:linear-gradient(90deg,var(--dark),var(--dark2));color:#fff;font-size:10px;font-weight:700;
+           text-transform:uppercase;letter-spacing:.5px;padding:11px 12px;text-align:left}
+  thead th.r{text-align:right}thead th.c{text-align:center}
+  tbody td{padding:11px 12px;font-size:11.5px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:#fcfaf4}
+  td.r{text-align:right;font-weight:700}td.c{text-align:center}
+  .pname{font-weight:800;color:var(--ink)}
+  .par{font-family:'Tajawal';color:var(--muted);font-size:10.5px;font-weight:600}
+  .sku{display:inline-block;margin-top:3px;font-size:9px;color:var(--muted);background:#f1ead9;padding:1px 6px;border-radius:5px}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* BOTTOM */
+  .bottom{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:20px}
+  .panel{border:1px solid var(--line);border-radius:12px;padding:14px 15px}
+  .panel h4{font-size:10px;letter-spacing:1px;color:var(--brand);text-transform:uppercase;margin-bottom:8px}
+  .panel h4 span{font-family:'Tajawal';color:var(--muted)}
+  .bank{display:flex;gap:14px;align-items:center}
+  .qr{width:74px;height:74px;border-radius:10px;background:
+      conic-gradient(#000 25%,#fff 0 50%,#000 0 75%,#fff 0);background-size:12px 12px;border:5px solid #fff;
+      box-shadow:0 0 0 1px var(--line)}
+  .bank .det{font-size:10.5px;line-height:1.6}
+  .bank .det b{color:var(--ink)}
+  .totrow{display:flex;justify-content:space-between;font-size:11.5px;padding:6px 2px;color:#5d5142}
+  .totrow b{color:var(--ink)}
+  .disc{color:var(--ok)}
+  .grand{margin-top:8px;background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:12px;
+         padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+  .grand .t{font-weight:800;color:var(--dark);font-size:13px}
+  .grand .t small{display:block;font-family:'Tajawal';font-weight:700;font-size:10px;color:var(--dark2)}
+  .grand .a{font-weight:900;color:var(--dark);font-size:22px;font-variant-numeric:tabular-nums}
+  .words{margin-top:8px;font-size:10px;color:var(--muted);font-style:italic}
+
+  .paid-note{margin-top:14px;background:rgba(31,157,85,.08);border:1px solid rgba(31,157,85,.35);border-radius:10px;
+             padding:9px 13px;font-size:10.5px;color:#176b3c;font-weight:700;display:flex;gap:8px;align-items:center}
+
+  /* FOOTER */
+  .terms{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .terms .blk h5{font-size:9.5px;letter-spacing:.8px;color:var(--dark);text-transform:uppercase}
+  .terms .blk p{font-size:9.5px;color:#6b5f4d;line-height:1.55;margin-top:4px}
+  .sign{margin-top:8px;border-top:1.5px dashed var(--line);padding-top:8px;font-size:10px;color:var(--muted)}
+  .footband{margin-top:18px;background:var(--dark);color:#e9dcc4;border-radius:12px;padding:13px 16px;
+            display:flex;justify-content:space-between;align-items:center;font-size:10px}
+  .footband b{color:var(--brand)}
+  .thanks{font-family:'Tajawal';font-weight:800;color:#fff;font-size:13px}
+  .ribbon{position:absolute;top:26px;left:-44px;transform:rotate(-45deg);background:var(--ok);color:#fff;
+          font-weight:800;font-size:11px;letter-spacing:3px;padding:6px 56px;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="topbar"></div>
+  <div class="ribbon">PAID</div>
+  <div class="pad">
+
+    <!-- HEADER -->
+    <div class="head">
+      <div class="brand">
+        <div class="logo">U</div>
+        <div>
+          <h1>UELLOW <span style="font-size:12px;color:var(--muted)">W.L.L</span></h1>
+          <div class="sub">Salmiya, Block 12, Kuwait · <b>+965 9717 0933</b></div>
+          <div class="sub">info@uellow.com · CR <b>123456</b> · Tax No. <b>KW-998877</b></div>
+        </div>
+      </div>
+      <div class="doc">
+        <div class="title">INVOICE<small>فاتورة ضريبية</small></div>
+        <div class="no">No. <b>INV/2026/004182</b></div>
+        <div class="stamp">PAID · مدفوعة</div>
+      </div>
+    </div>
+
+    <!-- PARTIES -->
+    <div class="grid3">
+      <div class="card">
+        <div class="lbl">From <span>· من</span></div>
+        <div class="nm">Uellow W.L.L</div>
+        <div class="ln">Salmiya, Block 12, St. 1<br/>Kuwait City, Kuwait<br/>billing@uellow.com</div>
+      </div>
+      <div class="card">
+        <div class="lbl">Bill to <span>· فاتورة إلى</span></div>
+        <div class="nm">أحمد الفهد · Ahmad Al-Fahad</div>
+        <div class="ln">قطعة 4، شارع 7، منزل 22<br/>حولي، الكويت<br/>+965 6650 1122</div>
+      </div>
+      <div class="card">
+        <div class="lbl">Ship to <span>· التوصيل إلى</span></div>
+        <div class="nm">نفس العنوان · Same address</div>
+        <div class="ln">حولي، الكويت<br/>تسليم: 2–4 أيام عمل<br/>Courier: Uellow Express</div>
+      </div>
+    </div>
+
+    <!-- META -->
+    <div class="meta">
+      <div><div class="k">Issue date · التاريخ</div><div class="v num">14 Jun 2026</div></div>
+      <div><div class="k">Due date · الاستحقاق</div><div class="v num">Paid</div></div>
+      <div><div class="k">Order ref · الطلب</div><div class="v">S00004182</div></div>
+      <div><div class="k">Payment · الدفع</div><div class="v">KNET · ك-نت</div></div>
+      <div><div class="k">Salesperson · المندوب</div><div class="v">Beena AI</div></div>
+    </div>
+
+    <!-- ITEMS -->
+    <table>
+      <thead>
+        <tr>
+          <th style="width:34px" class="c">#</th>
+          <th>Description · الوصف</th>
+          <th class="c" style="width:52px">Qty</th>
+          <th class="r" style="width:92px">Unit</th>
+          <th class="r" style="width:70px">Disc</th>
+          <th class="r" style="width:60px">VAT</th>
+          <th class="r" style="width:96px">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="c">1</td>
+          <td><div class="pname">HainoTeko Smart Watch — Female</div>
+              <div class="par">ساعة هاينو تيكو الذكية — نسائي</div>
+              <span class="sku">SKU HT-18-RG</span></td>
+          <td class="c num">1</td><td class="r num">19.500</td><td class="r disc num">−2.000</td>
+          <td class="r num">0%</td><td class="r num">17.500</td>
+        </tr>
+        <tr>
+          <td class="c">2</td>
+          <td><div class="pname">Wireless Earbuds Pro</div>
+              <div class="par">سماعات لاسلكية برو</div>
+              <span class="sku">SKU EB-PRO-BLK</span></td>
+          <td class="c num">2</td><td class="r num">8.750</td><td class="r disc num">—</td>
+          <td class="r num">0%</td><td class="r num">17.500</td>
+        </tr>
+        <tr>
+          <td class="c">3</td>
+          <td><div class="pname">Premium Gift Wrap</div>
+              <div class="par">تغليف هدايا فاخر</div>
+              <span class="sku">SKU GFT-WRAP</span></td>
+          <td class="c num">1</td><td class="r num">1.000</td><td class="r disc num">—</td>
+          <td class="r num">0%</td><td class="r num">1.000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- BOTTOM -->
+    <div class="bottom">
+      <div>
+        <div class="panel">
+          <h4>Payment details <span>· بيانات الدفع</span></h4>
+          <div class="bank">
+            <div class="qr"></div>
+            <div class="det">
+              <div><b>Bank:</b> National Bank of Kuwait</div>
+              <div><b>IBAN:</b> KW81 NBOK 0000 0000 1234 5678 90</div>
+              <div><b>Account:</b> Uellow W.L.L</div>
+              <div style="color:var(--muted);margin-top:4px">امسح الرمز للتحقق من الفاتورة · Scan to verify</div>
+            </div>
+          </div>
+        </div>
+        <div class="paid-note">✓ تم الدفع بالكامل عبر K-NET بتاريخ 14 يونيو 2026 — Settled in full.</div>
+      </div>
+      <div>
+        <div class="panel">
+          <div class="totrow"><span>Subtotal · الإجمالي الفرعي</span><b class="num">38.000 KD</b></div>
+          <div class="totrow disc"><span>Discount · الخصم</span><b class="num">−2.000 KD</b></div>
+          <div class="totrow"><span>Shipping · الشحن</span><b class="num">0.000 KD</b></div>
+          <div class="totrow"><span>VAT (0%) · ضريبة</span><b class="num">0.000 KD</b></div>
+          <div class="grand">
+            <div class="t">TOTAL<small>الإجمالي المستحق</small></div>
+            <div class="a">36.000 KD</div>
+          </div>
+          <div class="words">Thirty-six Kuwaiti Dinars only · ستة وثلاثون دينارًا كويتيًا فقط لا غير</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMS + FOOTER -->
+    <div class="terms">
+      <div class="blk">
+        <h5>Terms · الشروط</h5>
+        <p>Goods remain property of Uellow until paid in full. Returns within 14 days per Uellow policy. هذه فاتورة إلكترونية معتمدة لا تتطلب توقيعًا.</p>
+      </div>
+      <div class="blk">
+        <h5>Notes · ملاحظات</h5>
+        <p>Thank you for shopping with Uellow. For support contact info@uellow.com or via the Beena assistant in the app.</p>
+        <div class="sign">Authorized signature · التوقيع المعتمد &nbsp;__________________</div>
+      </div>
+    </div>
+
+    <div class="footband">
+      <div class="thanks">شكرًا لتسوّقك مع يلو 💛</div>
+      <div>uellow.com · <b>+965 9717 0933</b> · INV/2026/004182</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
