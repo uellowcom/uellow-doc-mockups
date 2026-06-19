@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Uellow — Delivery Note (mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--brand:#F5C320;--brand2:#FFD24A;--dark:#412402;--dark2:#5B3410;--ink:#1C1206;--muted:#8a7c66;--line:#ece5d6;--soft:#FBF7EC;--ok:#1f9d55;--info:#2563EB}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#d9d2c5;font-family:'Tajawal','Sora',sans-serif;color:var(--ink);padding:24px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:210mm;min-height:297mm;margin:0 auto;background:#fff;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:6px}
+  .topbar{height:9px;background:linear-gradient(90deg,var(--dark),var(--brand) 55%,var(--brand2))}
+  .pad{padding:26px 30px}
+  .head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .brand{display:flex;gap:14px;align-items:center}
+  .logo{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,var(--dark),var(--dark2));color:var(--brand);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:30px;box-shadow:0 6px 16px rgba(65,36,2,.35);font-family:'Sora'}
+  .brand h1{font-size:21px;letter-spacing:.5px;color:var(--dark)}
+  .brand .sub{font-size:10.5px;color:var(--muted);font-weight:600;margin-top:2px}.brand .sub b{color:var(--ink)}
+  .doc{text-align:right}.doc .title{font-size:27px;font-weight:800;color:var(--dark);line-height:1;letter-spacing:1px}
+  .doc .title small{display:block;font-family:'Tajawal';font-size:15px;color:var(--muted);font-weight:700;margin-top:3px}
+  .doc .no{margin-top:8px;font-size:12px;color:var(--muted);font-weight:600}.doc .no b{color:var(--ink);font-size:13px}
+  .status{display:inline-block;margin-top:8px;background:rgba(31,157,85,.1);border:1.5px solid var(--ok);color:var(--ok);font-weight:800;padding:4px 12px;border-radius:8px;font-size:11px;letter-spacing:1px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px}
+  .card{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .card.hi{background:#fff7df;border-color:#f0dca0}
+  .card .lbl{font-size:9.5px;font-weight:800;letter-spacing:1px;color:#caa008;text-transform:uppercase}.card .lbl span{font-family:'Tajawal';color:var(--muted);font-weight:700}
+  .card .nm{font-size:13.5px;font-weight:800;color:var(--ink);margin-top:5px}.card .ln{font-size:10.5px;color:#5d5142;margin-top:2px;line-height:1.45}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);margin-top:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .meta div{padding:9px 12px;border-right:1px solid var(--line)}.meta div:last-child{border-right:0}
+  .meta .k{font-size:8.5px;font-weight:800;letter-spacing:.6px;color:var(--muted);text-transform:uppercase}.meta .v{font-size:11.5px;font-weight:800;color:var(--ink);margin-top:3px}
+  table.items{width:100%;border-collapse:collapse;margin-top:18px;border-radius:12px;overflow:hidden}
+  .items thead th{background:linear-gradient(90deg,var(--dark),var(--dark2));color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:11px 12px;text-align:left}
+  .items th.r{text-align:right}.items th.c{text-align:center}
+  .items tbody td{padding:10px 12px;font-size:11.5px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .items tbody tr:nth-child(even){background:#fcfaf4}
+  .items td.c{text-align:center;font-weight:700}
+  .pcell{display:flex;gap:10px;align-items:center}.pthumb{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#fff6d9,#f3ead2);display:flex;align-items:center;justify-content:center;font-size:18px}
+  .pname{font-weight:800}.par{font-family:'Tajawal';color:var(--muted);font-size:10.5px;font-weight:600}
+  .done{color:var(--ok);font-weight:800}
+  .bottom{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+  .panel{border:1px solid var(--line);border-radius:12px;padding:14px 15px}
+  .panel h4{font-size:10px;letter-spacing:1px;color:#caa008;text-transform:uppercase;margin-bottom:8px}
+  .bank{display:flex;gap:14px;align-items:center}
+  .qr{width:84px;height:84px;border-radius:10px;background:conic-gradient(#000 25%,#fff 0 50%,#000 0 75%,#fff 0);background-size:13px 13px;border:5px solid #fff;box-shadow:0 0 0 1px var(--line)}
+  .recv{border:1.5px dashed var(--line);border-radius:12px;padding:14px}
+  .recv h5{font-size:9.5px;letter-spacing:.8px;color:var(--dark);text-transform:uppercase}
+  .recv .row{display:flex;justify-content:space-between;margin-top:22px;font-size:9px;color:var(--muted)}
+  .recv .row .l{border-top:1.5px solid var(--line);padding-top:5px;width:46%}
+  .cod{margin-top:14px;background:#fffde7;border:1px solid #f0e3a0;border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
+  .cod .t{font-weight:800;color:var(--dark);font-size:12px}.cod .a{font-weight:900;color:#412402;font-size:18px}
+  .footband{margin-top:16px;background:var(--dark);color:#e9dcc4;border-radius:12px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;font-size:10px}
+  .footband b{color:var(--brand)}.thanks{font-family:'Tajawal';font-weight:800;color:#fff;font-size:13px}
+</style></head>
+<body>
+<div class="sheet"><div class="topbar"></div><div class="pad">
+  <div class="head">
+    <div class="brand"><div class="logo">U</div>
+      <div><h1>UELLOW <span style="font-size:12px;color:var(--muted)">W.L.L</span></h1>
+        <div class="sub">Al Farwaniyah · Deejany complex · Shop No.7 · <b>+965 9717 0939</b></div>
+        <div class="sub">info@uellow.com</div></div></div>
+    <div class="doc"><div class="title">DELIVERY NOTE<small>سند تسليم</small></div>
+      <div class="no">No. <b>WH/OUT/00231</b></div>
+      <div class="status">DONE · تم التسليم</div></div>
+  </div>
+
+  <div class="grid3">
+    <div class="card"><div class="lbl">From <span>· من</span></div>
+      <div class="nm">Uellow Main Warehouse</div>
+      <div class="ln">Al Farwaniyah · WH/Stock<br/>Kuwait</div></div>
+    <div class="card hi"><div class="lbl">Deliver to <span>· التوصيل إلى</span></div>
+      <div class="nm">أحمد الفهد · Ahmad Al-Fahad</div>
+      <div class="ln">قطعة 4، شارع 7، منزل 22<br/>حولي، الكويت<br/>+965 6650 1122</div></div>
+    <div class="card"><div class="lbl">Carrier <span>· الناقل</span></div>
+      <div class="nm">Uellow Express</div>
+      <div class="ln">Tracking: UE-77123945<br/>Window: 2–4 working days</div></div>
+  </div>
+
+  <div class="meta">
+    <div><div class="k">Scheduled · الموعد</div><div class="v">14 Jun 2026</div></div>
+    <div><div class="k">Source · المصدر</div><div class="v">S00004182</div></div>
+    <div><div class="k">Operation · العملية</div><div class="v">Delivery Orders</div></div>
+    <div><div class="k">Pieces · القطع</div><div class="v">3</div></div>
+  </div>
+
+  <table class="items">
+    <thead><tr><th class="c" style="width:34px">#</th><th>Product · المنتج</th>
+      <th class="c" style="width:64px">Ordered</th><th class="c" style="width:64px">Delivered</th>
+      <th class="c" style="width:110px">Lot / Serial</th></tr></thead>
+    <tbody>
+      <tr><td class="c">1</td><td><div class="pcell"><div class="pthumb">⌚</div><div>
+        <div class="pname">HainoTeko Smart Watch — Female</div><div class="par">ساعة هاينو تيكو الذكية — نسائي</div></div></div></td>
+        <td class="c">1</td><td class="c done">1</td><td class="c">SN-HT-0098</td></tr>
+      <tr><td class="c">2</td><td><div class="pcell"><div class="pthumb">🎧</div><div>
+        <div class="pname">Wireless Earbuds Pro</div><div class="par">سماعات لاسلكية برو</div></div></div></td>
+        <td class="c">2</td><td class="c done">2</td><td class="c">—</td></tr>
+      <tr><td class="c">3</td><td><div class="pcell"><div class="pthumb">🎁</div><div>
+        <div class="pname">Premium Gift Wrap</div><div class="par">تغليف هدايا فاخر</div></div></div></td>
+        <td class="c">1</td><td class="c done">1</td><td class="c">—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cod"><div class="t">COD to collect · مبلغ الدفع عند الاستلام</div><div class="a">36.000 KD</div></div>
+
+  <div class="bottom">
+    <div class="panel"><h4>Scan · المسح</h4>
+      <div class="bank"><div class="qr"></div>
+        <div style="font-size:10.5px;line-height:1.6"><b>Ref#</b> WH/OUT/00231<br/><b>Tracking</b> UE-77123945<br/>
+        <span style="color:var(--muted)">امسح للتتبّع · Scan to track</span></div></div></div>
+    <div class="recv"><h5>Received in good condition · استُلمت بحالة جيدة</h5>
+      <div class="row"><div class="l">Receiver name · اسم المستلم</div><div class="l">Signature &amp; date · التوقيع</div></div></div>
+  </div>
+
+  <div class="footband"><div class="thanks">شكرًا لتسوّقك مع يلو 💛</div>
+    <div>uellow.com · <b>+965 9717 0939</b> · WH/OUT/00231</div></div>
+</div></div>
+</body></html>
