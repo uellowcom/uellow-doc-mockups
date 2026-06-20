@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Uellow — Category Page v6 (compact · product-first)</title>
+<style>
+  :root{
+    --bg:#F6F7F9; --card:#FFFFFF; --ink:#0F172A; --ink2:#334155; --muted:#8A93A6; --line:#ECEFF3; --line2:#F2F4F7;
+    --accent:#2563EB; --accent-soft:#F0F5FF; --green:#15A34A; --green-soft:#E8F7EE;
+    --red:#E11D48; --red-soft:#FDECEF; --amber:#F5C320; --amber-soft:#FFF8E1; --violet:#7C3AED; --teal:#0EA5A4;
+    --r:16px; --sh:0 1px 2px rgba(15,23,42,.04); --sh-card:0 2px 10px rgba(15,23,42,.05); --sh-h:0 14px 36px rgba(15,23,42,.10);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);line-height:1.45;-webkit-font-smoothing:antialiased;letter-spacing:-.1px}
+  .doc-head{background:#0F172A;color:#fff;padding:30px 24px;text-align:center}
+  .doc-head h1{font-size:24px;font-weight:700}.doc-head p{color:#94A3B8;font-size:13.5px;margin-top:8px}
+  .wrap{max-width:1300px;margin:0 auto;padding:24px 18px 90px}
+  .tag{display:inline-block;background:#0F172A;color:#fff;font-size:11.5px;font-weight:600;padding:6px 14px;border-radius:30px;margin:40px 0 8px}.tag.m{background:var(--accent)}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+  .browser{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:var(--sh);border:1px solid var(--line)}
+  .bbar{display:flex;align-items:center;gap:7px;background:#FAFBFC;padding:9px 14px;border-bottom:1px solid var(--line)}
+  .bbar i{width:11px;height:11px;border-radius:50%}.burl{flex:1;background:#fff;border:1px solid var(--line);border-radius:8px;font-size:12px;color:var(--muted);padding:5px 12px;margin-left:8px}
+  .shead{display:flex;align-items:center;gap:18px;padding:12px 22px;border-bottom:1px solid var(--line);background:#fff}
+  .logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:18px}.logo .bee{width:26px;height:26px;border-radius:7px;background:var(--amber);display:grid;place-items:center;font-size:14px}
+  .hs{flex:1;max-width:440px;background:#F6F7F9;border:1px solid var(--line);border-radius:30px;padding:9px 16px;font-size:13px;color:var(--muted)}
+  .hic{display:flex;gap:16px;font-size:16px;color:var(--ink2);margin-left:auto}
+  .stage{padding:14px 22px 22px;background:#fff}
+
+  /* ===== COMPACT command bar (everything in a slim band) ===== */
+  .cmd{display:flex;align-items:center;gap:12px;padding:10px 0 12px;flex-wrap:wrap}
+  .cmd .titlewrap{min-width:0}
+  .cmd .crumb{font-size:11px;color:var(--muted)}.cmd .crumb b{color:var(--ink2)}
+  .cmd h1{font-size:19px;font-weight:700;letter-spacing:-.4px;display:flex;align-items:center;gap:9px}
+  .cmd h1 .cnt{font-size:12px;font-weight:500;color:var(--muted)}
+  .cmd .grow{flex:1}
+  .cmd .aibar{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:30px;padding:8px 14px;background:#fff;min-width:260px;max-width:340px}
+  .cmd .aibar .sp{color:var(--accent)}.cmd .aibar .ph{flex:1;font-size:12.5px;color:var(--muted)}.cmd .aibar .ic{color:var(--muted)}
+  .cmd .fit{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:30px;padding:8px 13px;font-size:12.5px;color:var(--ink2);white-space:nowrap}
+  .cmd .fit b{font-weight:600}
+  .cmd .sortsel{border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-size:12.5px;color:var(--ink);background:#fff}
+
+  /* thin flash + presets line (single compact row) */
+  .stripline{display:flex;align-items:center;gap:10px;padding:9px 13px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(100deg,#FFF6F7,#fff 60%);margin-bottom:10px;flex-wrap:wrap}
+  .stripline .fl{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--red)}
+  .stripline .cd{display:flex;gap:5px}.stripline .cd span{background:var(--red);color:#fff;border-radius:6px;padding:2px 6px;font-size:11px;font-weight:700}
+  .stripline .vdiv{width:1px;height:16px;background:var(--line)}
+  .stripline .presets{display:flex;gap:7px;overflow:auto;flex:1}
+  .preset{flex-shrink:0;border:1px solid var(--line);border-radius:30px;padding:5px 11px;font-size:12px;color:var(--ink2);background:#fff}
+  .preset.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* active filter chips row (slim) */
+  .chiprow{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+  .fchip{border:1px solid var(--line);border-radius:30px;padding:4px 10px;font-size:12px;color:var(--ink2);background:#fff;display:flex;gap:6px;align-items:center}
+  .clearall{color:var(--muted);font-size:12px}
+  .savef{border:1px solid var(--amber);color:#8A6300;background:var(--amber-soft);border-radius:30px;padding:4px 10px;font-size:12px;font-weight:600}
+
+  /* ===== 2-col: filters (vertical, free of top space) | grid ===== */
+  .cols{display:grid;grid-template-columns:222px 1fr;gap:24px;align-items:start}
+  .filters{position:sticky;top:14px;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .fprev{background:var(--accent-soft);color:var(--accent);font-size:11.5px;font-weight:600;text-align:center;padding:8px;border-bottom:1px solid var(--line)}
+  .fsec{padding:13px 15px;border-bottom:1px solid var(--line2)}.fsec:last-child{border-bottom:0}
+  .fsec h4{font-size:12.5px;font-weight:700;margin-bottom:11px;display:flex;justify-content:space-between}.fsec h4 i{color:var(--muted);font-weight:400;font-size:13px}
+  .frow{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink2);margin:9px 0}
+  .cb{width:16px;height:16px;border-radius:5px;border:1.5px solid #CBD5E1;flex-shrink:0}.cb.on{background:var(--ink);border-color:var(--ink);position:relative}.cb.on:after{content:"✓";color:#fff;font-size:10px;position:absolute;inset:0;display:grid;place-items:center}
+  .frow .ct{margin-left:auto;color:var(--muted);font-size:11.5px}
+  .price-slide{height:3px;background:var(--line);border-radius:5px;position:relative;margin:16px 4px 8px}.price-slide i{position:absolute;height:100%;left:14%;right:36%;background:var(--accent);border-radius:5px}.price-slide b{position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;border:1.5px solid var(--accent);top:-6px;box-shadow:var(--sh)}
+  .pvals{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted)}
+  .swatches{display:flex;gap:9px;flex-wrap:wrap}.sw{width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 1px var(--line)}.sw.on{box-shadow:0 0 0 2px var(--ink)}
+  .stars{color:var(--amber)}
+
+  /* dense grid — 4 cols, compact cards */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+  .pcard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;transition:.18s}
+  .pcard:hover{box-shadow:var(--sh-h);transform:translateY(-3px);border-color:transparent}
+  .pthumb{aspect-ratio:1/1;background:#F7F8FA;display:grid;place-items:center;font-size:44px;position:relative}
+  .pthumb .emoji{transition:transform .3s}.pcard:hover .emoji{transform:scale(1.07)}
+  .pb{position:absolute;top:9px;left:9px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;background:#0F172A;color:#fff}.pb.red{background:var(--red)}.pb.amber{background:var(--amber);color:var(--ink)}
+  .pacts{position:absolute;top:9px;right:9px;display:flex;flex-direction:column;gap:6px;opacity:0;transform:translateX(5px);transition:.18s}
+  .pcard:hover .pacts{opacity:1;transform:translateX(0)}
+  .pacts span{width:27px;height:27px;border-radius:50%;background:rgba(255,255,255,.92);backdrop-filter:blur(4px);box-shadow:var(--sh);display:grid;place-items:center;color:var(--muted);font-size:12px}
+  .quick{position:absolute;left:9px;right:9px;bottom:9px;background:rgba(15,23,42,.92);color:#fff;text-align:center;border-radius:9px;padding:8px;font-size:11.5px;font-weight:700;opacity:0;transform:translateY(5px);transition:.18s}
+  .pcard:hover .quick{opacity:1;transform:translateY(0)}
+  .pbody{padding:10px 11px 12px}
+  .pbrand{font-size:10px;color:var(--muted);font-weight:600}
+  .pname{font-size:12.5px;font-weight:500;line-height:1.35;height:34px;overflow:hidden;margin:2px 0 6px}
+  .prate{font-size:10.5px;color:var(--muted);display:flex;align-items:center;gap:4px;margin-bottom:6px}.prate .sold{margin-left:auto;color:var(--green);font-weight:600}
+  .pprice{display:flex;align-items:baseline;gap:6px}.pprice .now{font-size:14.5px;font-weight:700}.pprice .was{font-size:11px;color:var(--muted);text-decoration:line-through}
+  .pline{font-size:10.5px;color:var(--green);font-weight:600;margin-top:5px}.pline.v{color:var(--violet)}.pline.r{color:var(--red)}
+
+  /* compact inline tiles inside the grid (no big top blocks) */
+  .tile{border-radius:14px;padding:14px;color:#fff;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+  .tile .e{position:absolute;right:8px;top:4px;font-size:40px;opacity:.22}
+  .tile small{font-size:10px;opacity:.92;font-weight:600}.tile b{font-size:14px;font-weight:700;margin-top:2px}.tile span{font-size:11px;opacity:.95;margin-top:auto}
+  .tile.coll{background:linear-gradient(120deg,#1D4ED8,#60A5FA)}
+  .tile.fit{background:linear-gradient(120deg,#0EA5A4,#5EEAD4)}
+  .tile.bundle{background:linear-gradient(120deg,#0F172A,#3A2A6B)}
+  .tile .mini{display:flex;gap:5px;margin:6px 0}.tile .mini i{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.16);display:grid;place-items:center;font-size:15px}
+  .tile .cta{margin-top:6px;background:rgba(255,255,255,.18);border-radius:8px;padding:6px;text-align:center;font-size:11px;font-weight:700}
+
+  .loadmore{text-align:center;margin-top:22px}.loadmore .cnt{font-size:12px;color:var(--muted);margin-bottom:9px}.loadmore button{border:1px solid var(--ink);color:var(--ink);background:#fff;border-radius:30px;padding:10px 30px;font-weight:700;font-size:13px}
+  .trust{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
+  .titem{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--ink2)}.titem .i{font-size:15px}
+  .note{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:12.5px;color:var(--ink2);margin-top:22px}.note b{color:var(--ink)}
+
+  /* mobile */
+  .phones{display:flex;gap:28px;flex-wrap:wrap;justify-content:center}
+  .phone{width:340px;background:#000;border-radius:42px;padding:11px;box-shadow:0 30px 60px rgba(15,23,42,.26)}
+  .pscreen{background:var(--bg);border-radius:32px;overflow:hidden;height:730px;position:relative;display:flex;flex-direction:column}
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:128px;height:26px;background:#000;border-radius:0 0 16px 16px;z-index:20}
+  .mtop{background:#fff;padding:40px 13px 9px;border-bottom:1px solid var(--line)}
+  .mtr{display:flex;align-items:center;gap:9px}.mback{width:32px;height:32px;border-radius:9px;background:#F6F7F9;display:grid;place-items:center;font-size:14px;color:var(--ink2)}
+  .mtitle{font-weight:700;font-size:14px}.mtitle small{display:block;font-weight:400;color:var(--muted);font-size:10px}
+  .msearch{flex:1;background:#F6F7F9;border:1px solid var(--line);border-radius:30px;padding:8px 13px;font-size:12px;color:var(--muted);display:flex;gap:7px;align-items:center}
+  .mstrip{display:flex;align-items:center;gap:7px;margin-top:8px;overflow:auto}
+  .mflash{flex-shrink:0;background:var(--red);color:#fff;border-radius:30px;padding:5px 10px;font-size:11px;font-weight:700}
+  .mpill{flex-shrink:0;border:1px solid var(--line);border-radius:30px;padding:5px 11px;font-size:11.5px;color:var(--ink2)}.mpill.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .mbody{flex:1;overflow:hidden;padding:11px;background:var(--bg)}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .mcard{background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;position:relative;box-shadow:var(--sh-card)}
+  .mthumb{aspect-ratio:1/1;background:#F7F8FA;display:grid;place-items:center;font-size:32px;position:relative}
+  .mbadge{position:absolute;top:7px;left:7px;background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px}
+  .mwish{position:absolute;top:7px;right:7px;width:23px;height:23px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;font-size:10px;color:var(--muted)}
+  .mpbody{padding:8px 9px 10px}.mpn{font-size:11px;font-weight:500;line-height:1.3;height:28px;overflow:hidden}.mrate{font-size:9px;color:var(--muted);margin:3px 0}
+  .mprice{font-size:13.5px;font-weight:700}.mprice s{font-size:9.5px;color:var(--muted);font-weight:400;margin-left:4px}.mline{font-size:9px;color:var(--green);font-weight:600;margin-top:3px}
+  .mbar{position:absolute;bottom:0;left:0;right:0;display:flex;gap:10px;padding:11px 14px 18px;background:#fff;border-top:1px solid var(--line)}
+  .mbar button{flex:1;border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px;font-weight:700;font-size:13px;color:var(--ink2);display:flex;align-items:center;justify-content:center;gap:7px}.mbar button.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .caption{text-align:center;font-size:12.5px;color:var(--muted);margin-top:12px}
+</style>
+</head>
+<body>
+<div class="doc-head">
+  <h1>🗂️ Uellow — Category Page · Compact <span style="background:#2563EB;font-size:11px;padding:2px 9px;border-radius:20px;vertical-align:middle">v6 · product-first</span></h1>
+  <p>Minimal space before the products — they appear above the fold. Ideas woven into a slim command bar, the sidebar &amp; inline tiles.</p>
+</div>
+
+<div class="wrap">
+  <div class="tag">🖥️ DESKTOP — compact / product-first</div>
+  <div class="sub">No big hero — a slim command bar (title · AI search · fit · sort) + one thin flash/presets line, then products start immediately. 4-up dense grid. Ideas live in the sidebar &amp; small inline tiles.</div>
+
+  <div class="browser">
+    <div class="bbar"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>
+      <span class="burl">🔒 uellow.com/ar/shop/category/mobile-accessories-418</span></div>
+    <div class="shead"><div class="logo"><span class="bee">🐝</span> uellow</div><div class="hs">🔍 ابحث عن منتجات وعلامات…</div><div class="hic"><span>♡</span><span>⚖️</span><span>👤</span><span>🛒</span></div></div>
+
+    <div class="stage">
+      <!-- COMPACT COMMAND BAR -->
+      <div class="cmd">
+        <div class="titlewrap">
+          <div class="crumb">Mobiles › <b>Mobile Accessories · إكسسوارات الجوال</b></div>
+          <h1>Mobile Accessories <span class="cnt">1,284 · 4.6★</span></h1>
+        </div>
+        <div class="grow"></div>
+        <div class="aibar"><span class="sp">🤖</span><span class="ph">اسأل بينا… "شاحن سريع أقل من ١٠"</span><span class="ic">🎙️</span></div>
+        <div class="fit">📱 <b>iPhone 15 Pro ▾</b></div>
+        <select class="sortsel"><option>Recommended</option><option>Best value (AI)</option><option>Price ↑</option><option>Top rated</option><option>Best selling</option></select>
+      </div>
+
+      <!-- THIN flash + presets -->
+      <div class="stripline">
+        <span class="fl">⚡ Flash</span><span class="cd"><span>02</span><span>14</span><span>09</span></span>
+        <span class="vdiv"></span>
+        <div class="presets"><span class="preset on">All</span><span class="preset">🔥 Under 5 KD</span><span class="preset">⭐ Top rated</span><span class="preset">Chargers</span><span class="preset">Cases</span><span class="preset">Power Banks</span><span class="preset">Earbuds</span><span class="preset">Cables</span><span class="preset">💳 Installments</span></div>
+      </div>
+
+      <!-- active chips -->
+      <div class="chiprow"><span class="fchip">Anker ✕</span><span class="fchip">Under 10 KD ✕</span><span class="fchip">4★ &amp; up ✕</span><span class="clearall">Clear all</span><span class="savef">🔖 Save filter</span></div>
+
+      <!-- 2 columns: products start here, top-of-fold -->
+      <div class="cols">
+        <div class="filters">
+          <div class="fprev">⚡ 312 match · live</div>
+          <div class="fsec"><h4>Price</h4><div class="price-slide"><i></i><b style="left:14%"></b><b style="right:36%"></b></div><div class="pvals"><span>2 KD</span><span>30 KD</span></div></div>
+          <div class="fsec"><h4>Brand <i>＋</i></h4><div class="frow"><span class="cb on"></span> Anker <span class="ct">312</span></div><div class="frow"><span class="cb"></span> Baseus <span class="ct">204</span></div><div class="frow"><span class="cb"></span> Samsung <span class="ct">156</span></div><div class="frow" style="color:var(--accent)">Show all</div></div>
+          <div class="fsec"><h4>Compatibility</h4><div class="frow"><span class="cb on"></span> iPhone 15 <span class="ct">410</span></div><div class="frow"><span class="cb"></span> USB-C <span class="ct">980</span></div></div>
+          <div class="fsec"><h4>Rating</h4><div class="frow"><span class="cb on"></span> <span class="stars">★★★★</span>☆ &amp; up</div></div>
+          <div class="fsec"><h4>Color</h4><div class="swatches"><span class="sw on" style="background:#0F172A"></span><span class="sw" style="background:#fff"></span><span class="sw" style="background:#E11D48"></span><span class="sw" style="background:#2563EB"></span><span class="sw" style="background:#15A34A"></span></div></div>
+          <div class="fsec"><h4>Offers</h4><div class="frow"><span class="cb on"></span> On sale</div><div class="frow"><span class="cb"></span> Free shipping</div><div class="frow"><span class="cb"></span> Installments</div></div>
+        </div>
+
+        <div>
+          <div class="grid">
+            <!-- products from the top -->
+            <div class="pcard"><div class="pthumb"><span class="emoji">🔌</span><span class="pb red">-45%</span><div class="pacts"><span>♡</span><span>⚖️</span></div><div class="quick">👁 Quick view</div></div>
+              <div class="pbody"><div class="pbrand">Anker</div><div class="pname">65W GaN Charger USB-C</div><div class="prate"><span class="stars">★★★★★</span> 4.8 <span class="sold">820+</span></div><div class="pprice"><span class="now">8.900</span><span class="was">15.900</span></div><div class="pline">Free · يصل غدًا</div></div></div>
+            <div class="pcard"><div class="pthumb"><span class="emoji">🎧</span><span class="pb red">-30%</span><div class="pacts"><span>❤</span><span>⚖️</span></div><div class="quick">👁 Quick view</div></div>
+              <div class="pbody"><div class="pbrand">Samsung</div><div class="pname">Galaxy Buds2 Pro</div><div class="prate"><span class="stars">★★★★★</span> 4.9 <span class="sold">1.2k</span></div><div class="pprice"><span class="now">21.000</span><span class="was">30.000</span></div><div class="pline v">5.250/mo · تالي</div></div></div>
+            <div class="pcard"><div class="pthumb"><span class="emoji">🔋</span><span class="pb">New</span><div class="pacts"><span>♡</span><span>⚖️</span></div><div class="quick">👁 Quick view</div></div>
+              <div class="pbody"><div class="pbrand">Baseus</div><div class="pname">20,000mAh Power Bank</div><div class="prate"><span class="stars">★★★★</span>☆ 4.3 <span class="sold">300+</span></div><div class="pprice"><span class="now">12.500</span></div><div class="pline r">Only 3 left</div></div></div>
+            <!-- compact inline tile (collection) -->
+            <div class="tile coll"><span class="e">🔌</span><small>EDITOR'S PICKS</small><b>Best Chargers</b><span>2026 ranked →</span></div>
+
+            <div class="pcard"><div class="pthumb"><span class="emoji">📱</span><span class="pb red">-20%</span><div class="pacts"><span>♡</span><span>⚖️</span></div><div class="quick">👁 Quick view</div></div>
+              <div class="pbody"><div class="pbrand">Spigen</div><div class="pname">Rugged Armor Case 15 Pro</div><div class="prate"><span class="stars">★★★★</span>☆ 4.5 <span class="sold">210</span></div><div class="pprice"><span class="now">4.750</span><span class="was">5.900</span></div><div class="pline">Free · يصل غدًا</div></div></div>
+            <div class="pcard"><div class="pthumb"><span class="emoji">🔗</span><span class="pb amber">Bestseller</span><div class="pacts"><span>♡</span><span>⚖️</span></div><div class="quick">👁 Quick view</div></div>
+              <div class="pbody"><div class="pbrand">Belkin</div><div class="pname">USB-C to Lightning 2m</div><div class="prate"><span class="stars">★★★★★</span> 4.7 <span class="sold">2k</span></div><div class="pprice"><span class="now">3.250</span></div><div class="pline">Free shipping</div></div></div>
+            <div class="pcard"><div class="pthumb"><span class="emoji">🛡️</span><span class="pb red">-50%</span><div class="pacts"><span>♡</span><span>⚖️</span></div><div class="quick">👁 Quick view</div></div>
+              <div class="pbody"><div class="pbrand">Nillkin</div><div class="pname">Glass Protector 3-Pack</div><div class="prate"><span class="stars">★★★★</span>☆ 4.4 <span class="sold">3k</span></div><div class="pprice"><span class="now">1.900</span><span class="was">3.800</span></div><div class="pline r">Selling fast</div></div></div>
+            <!-- compact bundle tile -->
+            <div class="tile bundle"><small>🧩 BUILD A KIT</small><div class="mini"><i>🔌</i><i>🔗</i><i>🛡️</i></div><span style="color:#34D399;font-weight:700">Save 15%</span><div class="cta">Build &amp; save →</div></div>
+
+            <div class="pcard"><div class="pthumb"><span class="emoji">⌚</span><span class="pb red">-25%</span><div class="pacts"><span>♡</span><span>⚖️</span></div><div class="quick">👁 Quick view</div></div>
+              <div class="pbody"><div class="pbrand">HainoTeko</div><div class="pname">Smart Watch Series 9</div><div class="prate"><span class="stars">★★★★</span>☆ 4.2 <span class="sold">180</span></div><div class="pprice"><span class="now">6.750</span><span class="was">8.900</span></div><div class="pline">Free shipping</div></div></div>
+            <div class="pcard"><div class="pthumb"><span class="emoji">🔌</span><div class="pacts"><span>♡</span><span>⚖️</span></div><div class="quick">👁 Quick view</div></div>
+              <div class="pbody"><div class="pbrand">UGREEN</div><div class="pname">100W GaN Desktop Charger</div><div class="prate"><span class="stars">★★★★★</span> 4.6 <span class="sold">640</span></div><div class="pprice"><span class="now">11.900</span></div><div class="pline">Free · يصل غدًا</div></div></div>
+            <div class="pcard"><div class="pthumb"><span class="emoji">🎧</span><span class="pb">New</span><div class="pacts"><span>♡</span><span>⚖️</span></div><div class="quick">👁 Quick view</div></div>
+              <div class="pbody"><div class="pbrand">Anker</div><div class="pname">Soundcore Liberty 4 NC</div><div class="prate"><span class="stars">★★★★★</span> 4.7 <span class="sold">1k</span></div><div class="pprice"><span class="now">9.900</span></div><div class="pline v">2.475/mo · تالي</div></div></div>
+            <!-- compact fit tile -->
+            <div class="tile fit"><span class="e">📱</span><small>FOR YOUR PHONE</small><b>iPhone 15 Pro</b><span>Show compatible →</span></div>
+          </div>
+
+          <div class="loadmore"><div class="cnt">Showing 60 of 1,284</div><button>Load more · عرض المزيد</button></div>
+        </div>
+      </div>
+
+      <div class="trust">
+        <div class="titem"><span class="i">🚚</span> Fast delivery</div><div class="titem"><span class="i">↩️</span> 14-day returns</div>
+        <div class="titem"><span class="i">🛡️</span> Authentic + warranty</div><div class="titem"><span class="i">🔒</span> KNET · Apple Pay · Taly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE -->
+  <div class="tag m">📱 MOBILE — compact</div>
+  <div class="sub">Slim header (title · search · flash · pills) then products immediately. Inline tiles slot into the grid.</div>
+  <div class="phones">
+    <div class="phone"><div class="pscreen"><div class="notch"></div>
+      <div class="mtop">
+        <div class="mtr"><div class="mback">←</div><div class="mtitle">إكسسوارات الجوال<small>1,284 · 4.6★</small></div><div class="mback">⚖️</div></div>
+        <div class="mtr" style="margin-top:8px"><div class="msearch">🤖 اسأل بينا… <span style="margin-left:auto">🎙️</span></div></div>
+        <div class="mstrip"><span class="mflash">⚡ 02:14:09</span><span class="mpill on">الكل</span><span class="mpill">🔥 أقل من ٥</span><span class="mpill">شواحن</span><span class="mpill">سماعات</span></div>
+      </div>
+      <div class="mbody">
+        <div class="mgrid">
+          <div class="mcard"><div class="mthumb">🔌<span class="mbadge">-45%</span><span class="mwish">♡</span></div><div class="mpbody"><div class="mpn">Anker 65W GaN</div><div class="mrate">★ 4.8 · 820+</div><div class="mprice">8.900<s>15.900</s></div><div class="mline">مجاني · غدًا</div></div></div>
+          <div class="mcard"><div class="mthumb">🎧<span class="mbadge">-30%</span><span class="mwish">❤</span></div><div class="mpbody"><div class="mpn">Galaxy Buds2 Pro</div><div class="mrate">★ 4.9 · 1.2k</div><div class="mprice">21.000<s>30.000</s></div><div class="mline" style="color:var(--violet)">5.250/شهر</div></div></div>
+          <div class="mcard"><div class="mthumb">🔋<span class="mwish">♡</span></div><div class="mpbody"><div class="mpn">Baseus 20,000mAh</div><div class="mrate" style="color:var(--red)">⏳ بقي ٣</div><div class="mprice">12.500</div><div class="mline">إكسبريس</div></div></div>
+          <div class="mcard"><div class="mthumb">📱<span class="mbadge">-20%</span><span class="mwish">♡</span></div><div class="mpbody"><div class="mpn">Spigen Case 15</div><div class="mrate">★ 4.5 · 210</div><div class="mprice">4.750<s>5.900</s></div><div class="mline">مجاني · غدًا</div></div></div>
+        </div>
+      </div>
+      <div class="mbar"><button>⇅ ترتيب</button><button class="pri">⚙ تصفية <span style="background:#fff;color:var(--ink);border-radius:20px;padding:0 6px;font-size:10px">3</span></button></div>
+    </div></div>
+  </div>
+  <div class="caption">Products above the fold · ideas tucked into the slim bar, the sidebar &amp; inline tiles — no tall hero.</div>
+
+  <div class="note">💡 <b>v6 = compact, product-first:</b> no big hero — a slim command bar holds the title, <b>AI/voice search, "find what fits" &amp; sort</b>; one thin line carries <b>flash countdown + quick presets</b>; the <b>vertical sidebar</b> (free of top space) holds all filters + live preview. Products start <b>above the fold</b> in a dense 4-up grid, with <b>collections / bundle / compatibility woven in as small inline tiles</b> — all the ideas, almost zero wasted top space.</div>
+</div>
+</body>
+</html>
