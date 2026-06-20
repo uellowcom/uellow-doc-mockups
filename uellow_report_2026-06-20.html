@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Uellow — تقرير العمل 2026-06-20</title>
+<style>
+  :root{
+    --bg:#EEF1F6; --card:#fff; --ink:#11182B; --ink2:#3A465C; --muted:#6B7892; --line:#E4E9F1;
+    --blue:#2563EB; --green:#15A34A; --red:#E11D48; --amber:#F59E0B; --violet:#7C3AED;
+    --green-soft:#E8F7EE; --red-soft:#FDECEF; --blue-soft:#EEF4FF; --amber-soft:#FFF7E1;
+    --sh:0 1px 2px rgba(17,24,43,.05),0 10px 30px rgba(17,24,43,.07);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Tajawal","Cairo",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+  .head{background:linear-gradient(120deg,#11182B,#2563EB 60%,#7C3AED);color:#fff;padding:40px 24px 34px;text-align:center}
+  .head h1{font-size:27px;font-weight:800}
+  .head p{color:rgba(255,255,255,.9);font-size:14px;margin-top:8px}
+  .head .date{margin-top:14px;display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);border-radius:30px;padding:6px 16px;font-size:13px}
+  .wrap{max-width:980px;margin:0 auto;padding:26px 18px 80px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:-50px auto 26px;position:relative}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center;box-shadow:var(--sh)}
+  .kpi b{display:block;font-size:24px;font-weight:800;color:var(--blue)}
+  .kpi span{font-size:12px;color:var(--muted)}
+  .sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:16px;box-shadow:0 1px 2px rgba(17,24,43,.04)}
+  .sec h2{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .sec h2 .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:17px;background:var(--blue-soft)}
+  .sec .lead{color:var(--muted);font-size:13px;margin-bottom:14px}
+  .item{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .item:last-child{border-bottom:0}
+  .item .st{flex-shrink:0;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff;background:var(--green)}
+  .item .st.fix{background:var(--red)}
+  .item .st.new{background:var(--violet)}
+  .item .b{font-weight:700;font-size:14px}
+  .item .d{font-size:12.5px;color:var(--ink2)}
+  .item .d code{background:#F1F4F9;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:11.5px;direction:ltr;display:inline-block}
+  .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .lk{font-size:12px;font-weight:700;text-decoration:none;border:1px solid var(--line);border-radius:30px;padding:5px 12px;color:var(--blue);background:var(--blue-soft);direction:ltr}
+  .lk.g{color:var(--green);background:var(--green-soft);border-color:#BCE6CC}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;margin-inline-start:6px}
+  .pill.done{background:var(--green-soft);color:var(--green)} .pill.fix{background:var(--red-soft);color:var(--red)} .pill.new{background:#F3EEFE;color:var(--violet)}
+  .note{background:var(--amber-soft);border:1px solid #F2DE9C;border-radius:12px;padding:12px 14px;font-size:12.5px;color:#8A6300;margin-top:12px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .mk{display:block;text-decoration:none;border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:#FAFBFD;color:var(--ink);font-size:12.5px}
+  .mk b{color:var(--blue);direction:ltr;display:block;font-size:12px}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:24px}
+  @media(max-width:720px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="head">
+  <h1>📋 تقرير عمل Uellow</h1>
+  <p>المتجر الإلكتروني (Odoo 18) — إصلاحات الدفع والسلة والشحن + ترجمات الهيدر/الفوتر + إعادة تصميم صفحة القسم</p>
+  <div class="date">📅 20 يونيو 2026</div>
+</div>
+
+<div class="wrap">
+  <div class="kpis">
+    <div class="kpi"><b>13+</b><span>إصلاح/ميزة</span></div>
+    <div class="kpi"><b>10</b><span>موكاب صفحة قسم</span></div>
+    <div class="kpi"><b>1</b><span>موديل جديد</span></div>
+    <div class="kpi"><b>200</b><span>كل الصفحات تعمل</span></div>
+  </div>
+
+  <!-- 1. الدفع -->
+  <div class="sec">
+    <h2><span class="ic" style="background:var(--green-soft);color:var(--green)">💳</span> مشاكل الدفع <span class="pill fix">حُلّت</span></h2>
+    <div class="lead">كانت وسائل الدفع لا تحوّل العميل لصفحة الدفع — تم تتبّع السبب الجذري وإصلاحه بالكامل.</div>
+    <div class="item"><span class="st fix">✓</span><div><div class="b">تعارض مسارات مكرّر</div><div class="d">كان <code>/uellow/checkout/submit</code> معرّفًا مرتين؛ النسخة القديمة في <code>uellow_mobile_manager</code> تطغى وتؤكّد الطلب دون تحويل للبوابة. عُطّلت النسخة المكررة.</div></div></div>
+    <div class="item"><span class="st fix">✓</span><div><div class="b">رفض UPayments لعملاء بلا بريد</div><div class="d">أضفت قيمًا احتياطية للبريد/الجوال/الاسم في الـpayload (يفيد الموقع والتطبيق).</div></div></div>
+    <div class="item"><span class="st fix">✓</span><div><div class="b">«أقساط تالي» كانت تحوّل لـKNET</div><div class="d">أضفت فرعًا مخصّصًا لتالي → يحوّل لصفحة <code>taly.io</code> الحقيقية؛ ويظهر حدّ تالي الأدنى (10 د.ك) بوضوح.</div></div></div>
+    <div class="item"><span class="st">✓</span><div><div class="b">رسالة فشل الدفع كـديالوج احترافي</div><div class="d">بدل الشريط الأحمر بالأعلى → ديالوج في منتصف الصفحة.</div></div></div>
+    <div class="note">النتيجة المؤكّدة: KNET يُرجع رابط بوابة حقيقي <code>https://kpay.com.kw/kpg/...</code> · تالي يُرجع <code>taly.io/secure-checkout</code>.</div>
+  </div>
+
+  <!-- 2. السلة والشحن -->
+  <div class="sec">
+    <h2><span class="ic">🛒</span> السلة والشحن <span class="pill done">منشور</span></h2>
+    <div class="item"><span class="st fix">✓</span><div><div class="b">الكمية كانت تعمل ريفرش وترجع لـ1</div><div class="d"><code>/uellow/cart_update</code> كان يرجع خطأ 500 (dict من مسار http) → أصلح ليرجع JSON؛ الكمية تتحدّث فورًا.</div></div></div>
+    <div class="item"><span class="st fix">✓</span><div><div class="b">تسريبة شحن (طلبات بشحن صفر)</div><div class="d">«حارس شحن» في التطبيق والموقع: لا يُؤكَّد طلب غير مجاني بشحن صفر — يرجع لسعر المنطقة/الثابت.</div></div></div>
+    <div class="item"><span class="st">✓</span><div><div class="b">سعر شحن الكويت 1.250 د.ك</div><div class="d">حُدّثت مناطق Arsel (Tier-1 + Fallback) من 1.0 إلى 1.250.</div></div></div>
+    <div class="item"><span class="st fix">✓</span><div><div class="b">«Samsa» كانت تظهر للكويت</div><div class="d">فلترة وسائل الشحن حسب الموقع/الدولة (<code>available_for_order</code>) — اختفت SMSA/Bosta من الكويت.</div></div></div>
+    <div class="item"><span class="st">✓</span><div><div class="b">أسماء الشحن العامة</div><div class="d">«Normal/Express Delivery · التوصيل القياسي/توصيل سريع» بدل أسماء أودو الداخلية.</div></div></div>
+    <div class="item"><span class="st fix">✓</span><div><div class="b">اختيار أول وسيلة شحن تلقائيًا + ناقل افتراضي من الخادم</div><div class="d">لا يصل العميل للدفع بلا شحن محتسب؛ الإجمالي في الشريط السفلي يشمل الشحن.</div></div></div>
+  </div>
+
+  <!-- 3. التوصيل السريع -->
+  <div class="sec">
+    <h2><span class="ic" style="background:var(--amber-soft);color:#8A6300">⚡</span> سياسة إتاحة التوصيل السريع <span class="pill done">مطابقة للتطبيق</span></h2>
+    <div class="lead">أعدت استخدام نفس دالة التطبيق <code>_carrier_now_availability</code> فالسياسة والنصوص متطابقة حرفيًا.</div>
+    <div class="item"><span class="st">✓</span><div><div class="b">إتاحة حسب الجدول (9 ص – 9 م)</div><div class="d">خارج الأوقات/بعد آخر موعد طلب → الوسيلة تظهر «معتّمة» + ملاحظة حمراء، ولا يمكن اختيارها.</div></div></div>
+    <div class="item"><span class="st">✓</span><div><div class="b">البادجات والرسائل</div><div class="d">«اطلب قبل HH:MM» · «غير متاح الآن — انتهى وقت الطلب، التوصيل غدًا».</div></div></div>
+  </div>
+
+  <!-- 4. ترجمات الهيدر -->
+  <div class="sec">
+    <h2><span class="ic" style="background:#F3EEFE;color:var(--violet)">🌐</span> ترجمات الهيدر <span class="pill done">منشور</span></h2>
+    <div class="item"><span class="st">✓</span><div><div class="b">أسماء الدول في «اختر متجر Uellow»</div><div class="d">الكويت/السعودية/الإمارات/قطر/عُمان/مصر/الولايات المتحدة (بدل الإنجليزية).</div></div></div>
+    <div class="item"><span class="st">✓</span><div><div class="b">خانة البحث</div><div class="d">«ابحث عن منتجات وعلامات وأكثر…».</div></div></div>
+    <div class="item"><span class="st">✓</span><div><div class="b">قائمة نتائج البحث</div><div class="d">الأقسام/العلامات/المنتجات/«عرض كل النتائج» مترجمة.</div></div></div>
+  </div>
+
+  <!-- 5. الفوتر -->
+  <div class="sec">
+    <h2><span class="ic" style="background:var(--red-soft);color:var(--red)">🧹</span> الفوتر <span class="pill done">منشور</span></h2>
+    <div class="item"><span class="st">✓</span><div><div class="b">حذف «برنامج الشركاء» و«تحميل التطبيق»</div></div></div>
+    <div class="item"><span class="st new">★</span><div><div class="b">أيقونات سوشيال احترافية</div><div class="d">شعارات SVG حقيقية (Facebook/Instagram/X/YouTube/TikTok/LinkedIn) بشارات دائرية ملوّنة.</div></div></div>
+  </div>
+
+  <!-- 6. صفحة القسم -->
+  <div class="sec">
+    <h2><span class="ic" style="background:#F3EEFE;color:var(--violet)">🗂️</span> إعادة تصميم صفحة القسم <span class="pill new">مُنفّذ + مُتحقّق</span></h2>
+    <div class="lead">صمّمت 10 نسخ موكاب ثم نُفّذت v3c المعتمدة على بيانات Odoo الحقيقية مع إعداد لكل عنصر.</div>
+    <b style="font-size:13px">الموكابات (اضغط للمعاينة):</b>
+    <div class="grid2">
+      <a class="mk" href="category_redesign_v3c.html"><b>v3c — المعتمدة ✅</b>إبداعية مع ضغط الأعلى</a>
+      <a class="mk" href="category_redesign_v10.html"><b>v10 — World-Class</b>أقوى نسخة عالمية</a>
+      <a class="mk" href="category_redesign_v9.html"><b>v9 — بهيجة</b>ألوان حيوية</a>
+      <a class="mk" href="category_redesign_v8.html"><b>v8 — الأقسام = الناف بار</b>هيدر بصورة القسم</a>
+      <a class="mk" href="category_redesign_v7.html"><b>v7 — Flagship</b>AI + جدول مقارنة</a>
+      <a class="mk" href="category_redesign_v1.html"><b>v1…v6</b>الأساس → المضغوط</a>
+    </div>
+    <div style="margin-top:14px"></div>
+    <div class="item"><span class="st new">★</span><div><div class="b">موديل جديد: <code>uellow_category_page</code></div><div class="d">هيرو بصورة القسم + صف أقسام فرعية بصور + حبوب فلاتر + شريط بينا/بحث + شريط شحن مجاني حيّ + شريط فلاش حيّ.</div></div></div>
+    <div class="item"><span class="st new">★</span><div><div class="b">إعداد لكل عنصر (≈16 مفتاح)</div><div class="d">في الإعدادات الخلفية — تفعيل/إطفاء لكل بلوك لكل موقع.</div></div></div>
+    <div class="item"><span class="st">✓</span><div><div class="b">تحقّق: كل شيء حقيقي (ليس رسمًا)</div><div class="d">على قسم «إكسسوارات الجوال»: الاسم الحقيقي · <b>1635 منتج</b> · صورة القسم · 13 قسمًا فرعيًا · 60 منتجًا — كلها بيانات حيّة.</div></div></div>
+    <div class="links">
+      <a class="lk g" href="https://kw.uellow.com/shop/category/418">شاهد القسم الحيّ →</a>
+    </div>
+  </div>
+
+  <!-- 7. عطل حرج -->
+  <div class="sec">
+    <h2><span class="ic" style="background:var(--red-soft);color:var(--red)">🛟</span> عطل حرج اكتُشف وأُصلح أثناء الفحص <span class="pill fix">حُلّ</span></h2>
+    <div class="lead">الثيم <code>theme_prime</code> غير مثبّت (الفعّال هو الفورك <code>uellow_theme</code>) — لغمان ظهرا عند إعادة بناء الأصول:</div>
+    <div class="item"><span class="st fix">✓</span><div><div class="b">حزمة الواجهة كانت تفشل → كل الصفحات 500</div><div class="d">أصول theme_prime غير قابلة للجلب → أُلغي تثبيته نظيفًا فتُبنى الحزمة من uellow_theme.</div></div></div>
+    <div class="item"><span class="st fix">✓</span><div><div class="b">كل صفحات المنتجات كانت 500</div><div class="d">استدعاء <code>theme_prime.product_extra_fields</code> في <code>droggol_theme_common</code> → أضفت view توافق يوجّه لنسخة الفورك. الآن المنتجات 200.</div></div></div>
+  </div>
+
+  <div class="sec" style="background:linear-gradient(120deg,#11182B,#2563EB);color:#fff;border:0">
+    <h2 style="color:#fff"><span class="ic" style="background:rgba(255,255,255,.16)">✅</span> الحالة النهائية</h2>
+    <div style="font-size:13.5px;color:rgba(255,255,255,.92)">
+      تسجيل الدخول + المتجر + الأقسام + المنتجات = <b style="color:#FFD75E">200</b> على كل المواقع (kw/sa/eg/www) · <b style="color:#FFD75E">صفر</b> أخطاء فعلية ·
+      كل الإصلاحات منشورة ومُتحقّق منها · المعرفة محفوظة في ذاكرة المشروع.
+    </div>
+  </div>
+
+  <div class="foot">Uellow · تقرير تلقائي — 2026-06-20 · الخطوة التالية المقترحة: إضافة بقية مزايا v3c للكروت (تقسيط/ETA/درجة قيمة/مقارنة) تدريجيًا، كلٌّ بإعداد.</div>
+</div>
+</body>
+</html>
